@@ -12,9 +12,16 @@ import { Input } from "@components/Input";
 import DeclineIcon from "@assets/svg/decline.svg";
 import Bagtick2Icon from "@assets/svg/bag-tick-2.svg";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Cheakout() {
   const [openModalCheckout, setOpenModalCheckout] = useState(false);
+  const { navigate } = useNavigation();
+
+  function canContinue() {
+    setOpenModalCheckout(false);
+    navigate("Payment");
+  }
 
   return (
     <VStack flex={1} bg="blue.900" px={PADDINGBACKGROUND}>
@@ -133,6 +140,7 @@ export default function Cheakout() {
               variant="outline"
               borderWidth={1}
               borderColor="#F6373F"
+              onPress={canContinue}
             />
           </VStack>
         </Box>

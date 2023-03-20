@@ -4,6 +4,7 @@ import TabRoutes from "./tab.routes";
 import { Notifications } from "@screens/Notifications";
 import Cheakout from "@screens/Cheakout";
 import Details from "@screens/Details";
+import Payment from "@screens/Payment";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ function AppRoutes() {
       <Screen name="Notifications" component={Notifications} />
       <Screen name="Cheakout" component={Cheakout} />
       <Screen name="Details" component={Details} />
+      <Screen name="Payment" component={Payment} />
     </Navigator>
   );
 }
