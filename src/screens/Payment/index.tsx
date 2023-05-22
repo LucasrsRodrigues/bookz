@@ -4,7 +4,7 @@ import {
   PADDINGBACKGROUND,
   PADDINGTOP,
 } from "@global/variables";
-import { Box, HStack, Heading, Text, VStack } from "native-base";
+import { Box, HStack, Heading, Text, VStack, Modal } from "native-base";
 import ArrowLeft from "@assets/svg/arrow-left.svg";
 import { Entypo } from "@expo/vector-icons";
 
@@ -13,7 +13,21 @@ import VisaIcon from "@assets/svg/visa_icon.svg";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
+import CartLeft from "@assets/svg/menu/Cart.svg";
+import DeclineIcon from "@assets/svg/decline.svg";
+import Bagtick2Icon from "@assets/svg/bag-tick-2.svg";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 export default function Payment() {
+  const [openModalCheckout, setOpenModalCheckout] = useState(false);
+  const { navigate } = useNavigation();
+
+  function canContinue() {
+    setOpenModalCheckout(false);
+    navigate("Payment");
+  }
+
   return (
     <VStack flex={1} bg="blue.900" px={PADDINGBACKGROUND} space={8}>
       <HStack paddingTop={PADDINGTOP} alignItems="center">
@@ -103,7 +117,61 @@ export default function Payment() {
         </VStack>
       </VStack>
 
-      <Button label="Confirm Payment" />
+      <Button
+        label="Confirm Payment"
+        onPress={() => setOpenModalCheckout(true)}
+      />
+
+      <Modal isOpen={openModalCheckout} bg="#A0A0CC40">
+        <Box bg="#1E1E2A" p={9} borderRadius="20px" m={6}>
+          <HStack justifyContent="flex-end">
+            <IconButton
+              icon={DeclineIcon}
+              onPress={() => setOpenModalCheckout(false)}
+            />
+          </HStack>
+
+          <Box
+            w={140}
+            h={140}
+            rounded="full"
+            bg="#2B2A38"
+            alignSelf="center"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Bagtick2Icon />
+          </Box>
+
+          <VStack alignItems="center" mt={8}>
+            <Text fontSize={24} color="#ffffff" fontWeight="medium">
+              Payment Successful
+            </Text>
+            <Text
+              fontSize={18}
+              color="#A0A0CC"
+              fontWeight="regular"
+              textAlign="center"
+            >
+              Your payment is successfully completed.
+            </Text>
+          </VStack>
+
+          <VStack space={3} mt={10}>
+            <Button
+              label="Go Back"
+              onPress={() => setOpenModalCheckout(false)}
+            />
+            <Button
+              label="Continue"
+              variant="outline"
+              borderWidth={1}
+              borderColor="#F6373F"
+              onPress={canContinue}
+            />
+          </VStack>
+        </Box>
+      </Modal>
     </VStack>
   );
 }

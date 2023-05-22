@@ -9,6 +9,7 @@ import Lock from "@assets/svg/lock.svg";
 import MenuIcon from "@assets/svg/menu_icon.svg";
 import BellIcon from "@assets/svg/bell_icon.svg";
 import WorldIcon from "@assets/svg/world.svg";
+import { SettingsOption } from "./components/SettingsOption";
 
 export function Settings() {
   const { navigate } = useNavigation();
@@ -34,57 +35,19 @@ export function Settings() {
           Accounts
         </Text>
 
-        <HStack alignItems="center">
-          <Box
-            h={16}
-            w={16}
-            bg="#383649"
-            rounded="full"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <ProfileCircle />
-          </Box>
+        <SettingsOption
+          icon={ProfileCircle}
+          label="Shahinur Rahman"
+          complement="Profile details"
+          to="ProfileDetails"
+        />
 
-          <VStack ml={3} flex={1}>
-            <Text fontSize={18} fontWeight="bold" color="#ffffff">
-              ProfileCircle
-            </Text>
-            <Text fontSize={14} fontWeight="light" color="#A0A0CC">
-              Profile details
-            </Text>
-          </VStack>
-
-          <Button w={12} h={12} bg="#383649" rounded="lg">
-            <ArrowRight />
-          </Button>
-        </HStack>
-
-        <HStack alignItems="center">
-          <Box
-            h={16}
-            w={16}
-            bg="#383649"
-            rounded="full"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Lock fill="#A0A0CC" />
-          </Box>
-
-          <VStack ml={3} flex={1}>
-            <Text fontSize={18} fontWeight="bold" color="#ffffff">
-              Password and Security
-            </Text>
-            <Text fontSize={14} fontWeight="light" color="#A0A0CC">
-              Personal password
-            </Text>
-          </VStack>
-
-          <Button w={12} h={12} bg="#383649" rounded="lg">
-            <ArrowRight />
-          </Button>
-        </HStack>
+        <SettingsOption
+          icon={Lock}
+          label="Password and Security"
+          complement="Personal password"
+          to="Password"
+        />
       </VStack>
 
       <VStack bg="#2B2A38" p={6} borderRadius={15} space={4}>
@@ -92,51 +55,12 @@ export function Settings() {
           Settings
         </Text>
 
-        <HStack alignItems="center">
-          <Box
-            h={16}
-            w={16}
-            bg="#383649"
-            rounded="full"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <WorldIcon />
-          </Box>
-
-          <VStack ml={3} flex={1}>
-            <Text fontSize={18} fontWeight="bold" color="#ffffff">
-              Language
-            </Text>
-          </VStack>
-
-          <Button w={12} h={12} bg="#383649" rounded="lg">
-            <ArrowRight />
-          </Button>
-        </HStack>
-
-        <HStack alignItems="center">
-          <Box
-            h={16}
-            w={16}
-            bg="#383649"
-            rounded="full"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <BellIcon fill="#A0A0CC" />
-          </Box>
-
-          <VStack ml={3} flex={1}>
-            <Text fontSize={18} fontWeight="bold" color="#ffffff">
-              Notification Setting
-            </Text>
-          </VStack>
-
-          <Button w={12} h={12} bg="#383649" rounded="lg">
-            <ArrowRight />
-          </Button>
-        </HStack>
+        <SettingsOption icon={WorldIcon} label="Language" to="Language" />
+        <SettingsOption
+          icon={BellIcon}
+          label="Notification Setting"
+          to="NotificationSetting"
+        />
       </VStack>
     </VStack>
   );

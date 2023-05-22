@@ -10,6 +10,7 @@ import { THEME } from "./src/theme";
 import { Routes } from "./src/routes";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { DrawnerMenu } from "@components/DrawnerMenu";
+import { Splash } from "@screens/Splash";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,19 +29,10 @@ export default function App() {
         <StatusBar barStyle="light-content" />
 
         {!fontsLoaded ? (
-          <Box
-            bg="blue.900"
-            flex={1}
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Spinner size="lg" />
-          </Box>
+          <Splash />
         ) : (
           <Box flex={1} bg="blue.900">
             <Routes />
-
-            {/* <DrawnerMenu /> */}
           </Box>
         )}
       </NativeBaseProvider>

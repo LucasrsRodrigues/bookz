@@ -100,7 +100,7 @@ export default function Cheakout() {
           <HStack justifyContent="flex-end">
             <IconButton
               icon={DeclineIcon}
-              onPress={() => setOpenModalCheckout(true)}
+              onPress={() => setOpenModalCheckout(false)}
             />
           </HStack>
 
